@@ -1,72 +1,182 @@
-# Getting Started with Create React App
+# StudyNotion - EdTech Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack educational technology platform built with React and Node.js.
+
+## Project Structure
+
+```
+PROJECT/
+├── client/          # React frontend application
+├── server1/         # Node.js backend application
+└── package.json     # Root package.json for running both apps
+```
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB
+
+## Installation
+
+### 1. Install Dependencies
+
+From the root directory, install dependencies for both client and server:
+
+```bash
+npm run install-all
+```
+
+Or install them separately:
+
+```bash
+# Install client dependencies
+npm run install-client
+
+# Install server dependencies
+npm run install-server
+```
+
+### 2. Environment Configuration
+
+#### Client Configuration
+Create a `.env` file in the `client` directory:
+
+```bash
+cd client
+cp .env.example .env
+```
+
+Edit `client/.env` and set:
+```
+REACT_APP_BASE_URL=http://localhost:4000/api/v1
+```
+
+#### Server Configuration
+Create a `.env` file in the `server1` directory:
+
+```bash
+cd server1
+cp .env.example .env
+```
+
+Edit `server1/.env` with your credentials:
+- MongoDB connection string
+- JWT secret
+- Cloudinary credentials
+- Mail server credentials
+- Razorpay credentials
+
+## Running the Application
+
+### Run Both Client and Server (Recommended for Development)
+
+From the root directory:
+
+```bash
+npm run dev
+```
+
+This will start:
+- **Client** on http://localhost:3000
+- **Server** on http://localhost:4000
+
+### Run Client Only
+
+```bash
+npm run client
+```
+
+Or from the client directory:
+
+```bash
+cd client
+npm start
+```
+
+### Run Server Only
+
+```bash
+npm run server
+```
+
+Or from the server directory:
+
+```bash
+cd server1
+npm run dev
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+### Root Directory
 
-### `npm start`
+- `npm run dev` - Run both client and server concurrently
+- `npm run client` - Run only the client
+- `npm run server` - Run only the server
+- `npm run install-all` - Install dependencies for both client and server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Client Directory
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
 
-### `npm test`
+### Server Directory
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `npm start` - Start production server
+- `npm run dev` - Start development server with nodemon
 
-### `npm run build`
+## Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
+- React 18
+- Redux Toolkit
+- React Router DOM
+- Axios
+- Tailwind CSS
+- Chart.js
+- React Hook Form
+- And more...
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT Authentication
+- Cloudinary (File uploads)
+- Razorpay (Payments)
+- Nodemailer (Email)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Endpoints
 
-### `npm run eject`
+The backend API is available at `http://localhost:4000/api/v1`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Main routes:
+- `/api/v1/auth` - Authentication
+- `/api/v1/profile` - User profiles
+- `/api/v1/course` - Course management
+- `/api/v1/payment` - Payment processing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Troubleshooting
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Port Already in Use
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you get a port conflict error:
+- Client default port: 3000
+- Server default port: 4000
 
-## Learn More
+Change the port in the respective `.env` files.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Module Not Found Errors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Run `npm run install-all` to ensure all dependencies are installed.
 
-### Code Splitting
+### CORS Errors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Ensure the server's CORS configuration includes your client URL (default: http://localhost:3000)
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# studynotion" 
+ISC 
 "# studynotion" 
