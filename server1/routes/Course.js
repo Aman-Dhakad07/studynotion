@@ -104,7 +104,6 @@ router.delete("/deleteCourse", deleteCourse)
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)
 // ********************************************************************************************************
-// Category can Only be Created by Admin
 // TODO: Put IsAdmin Middleware here
 router.post("/createCategory", auth, isAdmin, createCategory)
 router.get("/showAllcategory", showAllcategory)
@@ -115,12 +114,12 @@ router.post("/getCategoryPageDetails", categoryPageDetails)
 // ********************************************************************************************************
 router.post("/createRating", auth, isStudent, createRating)
 router.get("/getAverageRating", getAverageRating)
-router.get("/getRating", getAllRating);
+router.get("/getReviews", getAllRating)  // Changed from /getRating to /getReviews
+router.get("/getRating", getAllRating);  // Keep old route for backward compatibility
 
 
 
-// 2. ✅ ADD THIS NEW ROUTE DEFINITION
+// 2.  ADD THIS NEW ROUTE DEFINITION
 router.post("/enrollCourse", auth, isStudent, enrollCourse);
-
 
 module.exports = router
