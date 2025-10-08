@@ -30,7 +30,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin:["http://localhost:3000", "http://localhost:3001", "studynotion-liard-beta.vercel.app"] ,  
+        origin:["http://localhost:3000", 
+				"http://localhost:3001", 
+				"https://studynotion-liard-beta.vercel.app"] ,  
         credentials:true,
     })
 )
