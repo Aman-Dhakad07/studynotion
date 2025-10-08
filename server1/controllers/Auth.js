@@ -10,6 +10,7 @@ const { sendVerificatioEmail } = require("../models/OTP");
 /////////////////////////////////////////////////////////////////////////////////////////////////
 exports.sendOTP = async (req, res) => {
   try {
+    console.log("Send OTP route hit!", req.body); // log request
     const email  = req.body.email;
     console.log("📩 Email received from request:", email);
 
