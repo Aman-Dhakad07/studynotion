@@ -57,6 +57,12 @@ app.use("/api/v1/payment",paymentRoutes);
 
 
 
+// index.js (temporary)
+app.get("/api/v1/test", (req, res) => {
+    res.json({ success: true, message: "Server is working!" });
+});
+
+
 //default route
 app.get("/",(req, res) => {
     return res.json({
