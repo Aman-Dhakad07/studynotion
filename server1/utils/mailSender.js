@@ -1,33 +1,27 @@
-const nodemailer = require("nodemailer");
-require("dotenv").config();
+const axios = require("axios");
 
 const mailSender = async (email, title, body) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail", // tell Nodemailer to use Gmail
-      host: "smtp.gmail.com",
-      port: 587, // use STARTTLS, not SSL
-      secure: false, // TLS will upgrade later
-      auth: {
-        user: process.env.MAIL_USER, // your Gmail address
-        pass: process.env.MAIL_PASS, // your Gmail App Password
+    const response = await axios.post(
+      "https://api.resend.com/emails",
+      {
+        from: "Study Notion <noreply@studynotion.com>",
+        to: email,
+        subject: title,
+        html: body,
       },
-      tls: {
-        rejectUnauthorized: false, // prevent certificate rejection
-      },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const info = await transporter.sendMail({
-      from: `"Study Notion" <${process.env.MAIL_USER}>`,
-      to: email,
-      subject: title,
-      html: body,
-    });
-
-    console.log("✅ Email sent successfully:", info.response);
-    return info;
+    console.log("✅ Email sent successfully:", response.data);
+    return response.data;
   } catch (error) {
-    console.log("❌ Failed to send OTP:", error.message);
+    console.log("❌ Failed to send email:", error.message);
     return error.message;
   }
 };
