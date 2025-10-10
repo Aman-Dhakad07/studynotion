@@ -1,29 +1,28 @@
-const nodemailer = require("nodemailer");
+const axios = require("axios");
 require("dotenv").config();
 
 const mailSender = async (email, title, body) => {
   try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: process.env.MAIL_PORT,
-      secure: false, // TLS will be used on port 587
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
+    const response = await axios.post(
+      "https://api.resend.com/emails",
+      {
+        from: process.env.RESEND_FROM_EMAIL,
+        to: email,
+        subject: title,
+        html: body,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const info = await transporter.sendMail({
-      from: `"Study Notion" <onboarding@resend.dev>`, // you can replace this later with your verified domain email
-      to: email,
-      subject: title,
-      html: body,
-    });
-
-    console.log("✅ Email sent:", info.response);
-    return info;
+    console.log("✅ Email sent via Resend:", response.data);
+    return response.data;
   } catch (error) {
-    console.error("❌ Failed to send email:", error.message);
+    console.error("❌ Failed to send email via Resend:", error.response?.data || error.message);
     return error.message;
   }
 };
