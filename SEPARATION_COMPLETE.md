@@ -1,8 +1,6 @@
-# ✅ Client-Server Separation Complete
+# ✅ Client-Server 
 
 ## Summary
-
-Your frontend (client) and backend (server) are now **completely separated** and can run independently.
 
 ## Directory Structure
 
