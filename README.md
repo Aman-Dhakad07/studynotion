@@ -1,5 +1,7 @@
 # StudyNotion - EdTech Platform
 
+LINK -- https://studynotion-liard-beta.vercel.app/
+
 A full-stack educational technology platform built with React and Node.js.
 
 ## Project Structure
